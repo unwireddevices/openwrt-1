@@ -120,7 +120,10 @@ define Kernel/Configure/Default
 		cp $(LINUX_DIR)/.config.set $(LINUX_DIR)/.config.prev; \
 	}
 	$(_SINGLE) [ -d $(LINUX_DIR)/user_headers ] || $(MAKE) $(KERNEL_MAKEOPTS) INSTALL_HDR_PATH=$(LINUX_DIR)/user_headers headers_install
-	$(SH_FUNC) grep '=[ym]' $(LINUX_DIR)/.config.set | LC_ALL=C sort | md5s > $(LINUX_DIR)/.vermagic
+#	$(SH_FUNC) grep '=[ym]' $(LINUX_DIR)/.config.set | LC_ALL=C sort | md5s > $(LINUX_DIR)/.vermagic
+	VERMAGIC=`grep CONFIG_KERNEL_VERMAGIC $(TOPDIR)/.config | awk -F= '{print $$$$2}' | sed -e 's/"\(.*\)"/\1/g'`; \
+	[ -n "$$$$VERMAGIC" ] && echo $$$$VERMAGIC > $(LINUX_DIR)/.vermagic || \
+	( $(SH_FUNC) grep '=[ym]' $(LINUX_DIR)/.config | LC_ALL=C sort | md5s > $(LINUX_DIR)/.vermagic )
 endef
 
 define Kernel/Configure/Initramfs
