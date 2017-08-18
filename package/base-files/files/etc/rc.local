@@ -1,4 +1,36 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
+# UNWM1
+# set RESET to 0
+echo 99 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio99/direction
+echo 0 > /sys/class/gpio/gpio99/value
+
+# set BOOT to 0
+echo 98 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio98/direction
+echo 0 > /sys/class/gpio/gpio98/value
+
+sleep 1
+
+# set RESET to 1
+echo 1 > /sys/class/gpio/gpio99/value
+
+# UNWM2
+# set RESET to 0
+echo 107 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio107/direction
+echo 0 > /sys/class/gpio/gpio107/value
+
+# set BOOT to 0
+echo 106 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio106/direction
+echo 0 > /sys/class/gpio/gpio106/value
+
+sleep 1
+
+# set RESET to 1
+echo 1 > /sys/class/gpio/gpio107/value
+
 exit 0
