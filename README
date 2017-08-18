@@ -1,5 +1,8 @@
 This is the buildsystem for the OpenWrt Linux distribution.
 
+This branch is meant to be used with Unwired Devices UNWD-BASE2
+LoRa base station with iMX28 CPU.
+
 Please use "make menuconfig" to configure your appreciated
 configuration for the toolchain and firmware.
 
