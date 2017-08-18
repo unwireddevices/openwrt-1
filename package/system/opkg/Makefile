@@ -152,6 +152,11 @@ define Package/opkg/Default/install
 	$(INSTALL_DATA) ./files/customfeeds.conf $(1)/etc/opkg/customfeeds.conf
 	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
 	$(call FeedSourcesAppend,$(1)/etc/opkg/distfeeds.conf)
+	echo "src/gz unwired_cc_base http://files.unwireddevices.com/files/openwrt/ccalmer/1.3.1-imx28/packages/base/" >> $(1)/etc/opkg/distfeeds.conf
+	echo "src/gz unwired_cc_luci http://files.unwireddevices.com/files/openwrt/ccalmer/1.3.1-imx28/packages/luci/" >> $(1)/etc/opkg/distfeeds.conf
+	echo "src/gz unwired_cc_packages http://files.unwireddevices.com/files/openwrt/ccalmer/1.3.1-imx28/packages/packages/" >> $(1)/etc/opkg/distfeeds.conf
+	echo "src/gz unwired_cc_routing http://files.unwireddevices.com/files/openwrt/ccalmer/1.3.1-imx28/packages/routing/" >> $(1)/etc/opkg/distfeeds.conf
+	echo "src/gz unwired_cc_telephony http://files.unwireddevices.com/files/openwrt/ccalmer/1.3.1-imx28/packages/telephony/" >> $(1)/etc/opkg/distfeeds.conf
 	$(VERSION_SED) $(1)/etc/opkg/distfeeds.conf
 	$(INSTALL_BIN) ./files/20_migrate-feeds $(1)/etc/uci-defaults/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
